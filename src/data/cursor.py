@@ -3,9 +3,21 @@ from typing import Optional
 
 from psycopg import AsyncCursor, sql
 from psycopg.abc import Query, Params
-from psycopg._encodings import pgconn_encoding
 
 logger = logging.getLogger(__name__)
+
+
+def get_connection_encoding(conn):
+    """Get connection encoding, with fallback for different psycopg versions."""
+    try:
+        from psycopg._encodings import pgconn_encoding
+        return pgconn_encoding(conn.pgconn)
+    except (ImportError, AttributeError):
+        # Fallback for newer versions or when internal API is not available
+        try:
+            return conn.info.encoding
+        except AttributeError:
+            return 'utf-8'  # Safe default
 
 
 class AsyncLoggingCursor(AsyncCursor):
@@ -15,7 +27,7 @@ class AsyncLoggingCursor(AsyncCursor):
         elif isinstance(query, (sql.SQL, sql.Composed)):
             msg = query.as_string(self)
         elif isinstance(query, bytes):
-            msg = query.decode(pgconn_encoding(self._conn.pgconn), 'replace')
+            msg = query.decode(get_connection_encoding(self._conn), 'replace')
         else:
             msg = repr(query)
         return msg

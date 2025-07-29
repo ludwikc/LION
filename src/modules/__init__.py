@@ -22,6 +22,7 @@ active = [
     '.sponsors',
     '.topgg',
     '.premium',
+    '.reactions',
     '.test',
 ]
 

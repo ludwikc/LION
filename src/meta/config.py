@@ -133,7 +133,9 @@ class Conf:
         return result.strip() if result else result
 
     def _getintlist(self, value):
-        return [int(item.strip()) for item in value.split(',')]
+        if not value or not value.strip():
+            return []
+        return [int(item.strip()) for item in value.split(',') if item.strip()]
 
     def _getlist(self, value):
         return [item.strip() for item in value.split(',')]

@@ -99,7 +99,7 @@ async def main():
                 try:
                     log_context.set(f"APP: {appname}")
                     logger.info("StudyLion initialised, starting!", extra={'action': 'Starting'})
-                    await lionbot.start(conf.bot['TOKEN'])
+                    await lionbot.start(conf.bot['token'])
                 except asyncio.CancelledError:
                     log_context.set(f"APP: {appname}")
                     logger.info("StudyLion closed, shutting down.", extra={'action': "Shutting Down"}, exc_info=True)
