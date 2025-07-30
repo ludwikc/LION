@@ -47,8 +47,6 @@ class CoreData(Registry, name="core"):
         ------
         CREATE TABLE bot_config(
             appname TEXT PRIMARY KEY REFERENCES app_config(appname) ON DELETE CASCADE,
-            sponsor_prompt TEXT,
-            sponsor_message TEXT,
             default_skin TEXT
         );
         """
@@ -56,8 +54,6 @@ class CoreData(Registry, name="core"):
 
         appname = String(primary=True)
         default_skin = String()
-        sponsor_prompt = String()
-        sponsor_message = String()
 
     class Shard(RowModel):
         """
@@ -91,11 +87,9 @@ class CoreData(Registry, name="core"):
             userid BIGINT PRIMARY KEY,
             timezone TEXT,
             show_global_stats BOOLEAN,
-            topgg_vote_reminder BOOLEAN,
             avatar_hash TEXT,
             name TEXT,
             API_timestamp BIGINT,
-            gems INTEGER DEFAULT 0,
             first_seen TIMESTAMPTZ DEFAULT now(),
             last_seen TIMESTAMPTZ,
             locale TEXT,
@@ -109,11 +103,9 @@ class CoreData(Registry, name="core"):
         userid = Integer(primary=True)
         timezone = String()
         show_global_stats = Bool()
-        topgg_vote_reminder = Bool()
         avatar_hash = String()
         name = String()
         API_timestamp = Integer()
-        gems = Integer()
         first_seen = Timestamp()
         last_seen = Timestamp()
         locale = String()
@@ -379,4 +371,3 @@ class CoreData(Registry, name="core"):
             return webhook
 
     workouts = Table('workout_sessions')
-    topgg = Table('topgg')

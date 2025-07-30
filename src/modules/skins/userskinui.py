@@ -11,8 +11,7 @@ from gui.base.Card import Card
 from meta import LionBot, conf
 from meta.errors import ResponseTimedOut, UserInputError
 from meta.logger import log_wrap
-from modules.premium.data import GemTransactionType
-from modules.premium.errors import BalanceTooLow
+# Premium module imports removed
 from modules.skins.skinlib import CustomSkin, appskin_as_option
 from utils.ui import MessageUI, input, Confirm
 from utils.lib import MessageArgs, utc_now
@@ -39,7 +38,7 @@ class UserSkinUI(MessageUI):
 
         self.bot = bot
         self.cog = bot.get_cog('CustomSkinCog')
-        self.gems = bot.get_cog('PremiumCog')
+        self.gems = None  # Premium module removed
 
         self.userid = userid
 
@@ -141,19 +140,8 @@ class UserSkinUI(MessageUI):
                 skin = self.current_skin
                 skinid = self.cog.appskin_names.inverse[skin.skin_id]
 
-                # Perform transaction
-                transaction = await self.gems.gem_transaction(
-                    GemTransactionType.PURCHASE,
-                    actorid=self.userid,
-                    from_account=self.userid,
-                    to_account=None,
-                    amount=skin.price,
-                    description=(
-                        f"User purchased custom app skin {skin.skin_id} via UserSkinUI."
-                    ),
-                    note=None,
-                    reference=f"iid: {self._original.id if self._original else 'None'}"
-                )
+                # Skip transaction - premium module removed
+                transaction = None
 
                 # Create custom skin
                 custom_skin = await self.cog.data.CustomisedSkin.create(
@@ -169,7 +157,7 @@ class UserSkinUI(MessageUI):
                 await self.cog.data.UserSkin.create(
                     userid=self.userid,
                     custom_skin_id=custom_skin.custom_skin_id,
-                    transactionid=transaction.transactionid,
+                    transactionid=None,  # No transaction since premium module removed
                     active=True
                 )
 
@@ -224,72 +212,14 @@ class UserSkinUI(MessageUI):
     async def purchase_button(self, press: discord.Interaction, pressed: Button):
         t = self.bot.translator.t
 
-        skin = self.current_skin
-
-        # Verify we can purchase this skin
-        await self.reload()
-
-        if self.is_owned:
-            raise UserInputError(
-                t(_p(
-                    'ui:userskins|button:purchase|error:already_owned',
-                    "You already own this skin!"
-                ))
-            )
-        elif skin.price > self.balance:
-            raise UserInputError(
-                t(_p(
-                    'ui:userskins|button:purchase|error:insufficient_gems',
-                    "You don't have enough LionGems to purchase this skin!"
-                ))
-            )
-
-        # Confirm purchase
-        confirm_msg = t(_p(
-            'ui:userskins|button:purchase|confirm|desc',
-            "Are you sure you want to purchase this skin?\n"
-            "The price of the skin is {gem}**{price}**."
-        )).format(price=skin.price, gem=self.bot.config.emojis.gem)
-        confirm = Confirm(confirm_msg, press.user.id)
-
-        confirm.embed.set_footer(
-            text=t(_p(
-                'ui:userskins|button:purchase|confirm|footer',
-                "Your current balance is {balance} LionGems"
-            )).format(balance=self.balance)
+        # Premium module removed - disable purchasing
+        raise UserInputError(
+            t(_p(
+                'ui:userskins|button:purchase|error:premium_disabled',
+                "Skin purchasing is currently disabled. Premium features have been removed."
+            ))
         )
 
-        try:
-            result = await confirm.ask(press, ephemeral=True)
-        except ResponseTimedOut:
-            result = False
-
-        if result:
-            try:
-                await self._purchase_skin(skin.skin_id)
-            except BalanceTooLow:
-                raise UserInputError(
-                    t(_p(
-                        'ui:userskins|button:purchase|error:insufficient_gems_post_confirm',
-                        "Insufficient LionGems to purchase this skin!"
-                    ))
-                )
-
-            # Ack purchase and refresh
-            embed = discord.Embed(
-                colour=discord.Colour.brand_green(),
-                title=t(_p(
-                    'ui:userskins|button:purchase|embed:success|title',
-                    "Skin Purchase"
-                )),
-                description=t(_p(
-                    'ui:userskins|button:purchase|embed:success|desc',
-                    "You have purchased and equipped the skin **{name}**!\n"
-                    "Thank you for your support, and enjoy your new purchase!"
-                )).format(name=skin.display_name)
-            )
-            await press.followup.send(embed=embed, ephemeral=True)
-            await self.refresh()
     
     async def purchase_button_refresh(self):
         button = self.purchase_button
@@ -512,10 +442,12 @@ class UserSkinUI(MessageUI):
         # Determine action button
         skin = self.current_skin
         if not self.is_owned:
-            if skin.price <= self.balance:
-                action = self.purchase_button
+            # Premium module removed - only show equip for free skins
+            if skin.price == 0:
+                action = self.equip_button
             else:
-                action = self.gems.buy_gems_button()
+                # Don't show any purchase button for paid skins
+                action = None
         else:
             action = self.equip_button
 
@@ -549,4 +481,4 @@ class UserSkinUI(MessageUI):
         if self._skin is None:
             self._skin = active or 'default'
 
-        self.balance = await self.gems.get_gem_balance(self.userid)
+        self.balance = 0  # Premium module removed - no gem balance

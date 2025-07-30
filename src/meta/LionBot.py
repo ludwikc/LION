@@ -34,18 +34,15 @@ if TYPE_CHECKING:
     from modules.meta.cog import MetaCog
     from modules.moderation.cog import ModerationCog
     from modules.pomodoro.cog import TimerCog
-    from modules.premium.cog import PremiumCog
     from modules.ranks.cog import RankCog
     from modules.reminders.cog import Reminders
     from modules.rooms.cog import RoomCog
     from modules.schedule.cog import ScheduleCog
     from modules.shop.cog import ShopCog
     from modules.skins.cog import CustomSkinCog
-    from modules.sponsors.cog import SponsorCog
     from modules.statistics.cog import StatsCog
     from modules.sysadmin.dash import LeoSettings
     from modules.tasklist.cog import TasklistCog
-    from modules.topgg.cog import TopggCog
     from modules.user_config.cog import UserConfigCog
     from modules.video_channels.cog import VideoCog
 
@@ -180,9 +177,6 @@ class LionBot(Bot):
     def get_cog(self, name: Literal['TimerCog']) -> 'TimerCog':
         ...
 
-    @overload
-    def get_cog(self, name: Literal['PremiumCog']) -> 'PremiumCog':
-        ...
 
     @overload
     def get_cog(self, name: Literal['RankCog']) -> 'RankCog':

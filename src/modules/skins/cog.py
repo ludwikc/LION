@@ -155,14 +155,8 @@ class CustomSkinCog(LionCog):
         Returns None if the guild is not premium or has no custom skin set.
         Usually hits cache (Specifically the PremiumGuild cache).
         """
-        cog = self.bot.get_cog('PremiumCog')
-        if not cog:
-            logger.error(
-                "Trying to get guild skinid without loaded premium cog!"
-            )
-            return None
-        row = await cog.data.PremiumGuild.fetch(guildid)
-        return row.custom_skin_id if row else None
+        # Premium module removed - no guild custom skins
+        return None
 
     async def get_user_skinid(self, userid: int) -> Optional[int]:
         """
@@ -285,38 +279,13 @@ class CustomSkinCog(LionCog):
             return
         t = self.bot.translator.t
 
-        # Check guild premium status
-        premiumcog = self.bot.get_cog('PremiumCog')
-        guild_row = await premiumcog.data.PremiumGuild.fetch(ctx.guild.id, cached=False)
-
-        if not guild_row:
-            raise UserInputError(
-                t(_p(
-                    'cmd:admin_brand|error:not_premium',
-                    "Only premium servers can modify their interface theme! "
-                    "Use the {premium} command to upgrade your server."
-                )).format(premium=self.bot.core.mention_cmd('premium'))
-            )
-
-        await ctx.interaction.response.defer(thinking=True, ephemeral=False)
-
-        if guild_row.custom_skin_id is None:
-            # Create new custom skin
-            skin_data = await self.data.CustomisedSkin.create(
-                base_skin_id=self.appskin_names.inverse[self.current_default] if self.current_default else None
-            )
-            await guild_row.update(custom_skin_id=skin_data.custom_skin_id)
-
-        skinid = guild_row.custom_skin_id
-        custom_skin = await CustomSkin.fetch(self.bot, skinid)
-        if custom_skin is None:
-            raise ValueError("Invalid custom skin id")
-
-        # Open the CustomSkinEditor with this skin
-        ui = CustomSkinEditor(custom_skin, callerid=ctx.author.id)
-        await ui.send(ctx.channel)
-        await ctx.interaction.delete_original_response()
-        await ui.wait()
+        # Premium module removed - guild branding disabled
+        raise UserInputError(
+            t(_p(
+                'cmd:admin_brand|error:premium_disabled',
+                "Guild branding has been disabled. Premium features have been removed from this bot."
+            ))
+        )
 
     # ----- Owner commands -----
     @LionCog.placeholder_group

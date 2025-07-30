@@ -39,8 +39,6 @@ CREATE TABLE app_config(
 
 CREATE TABLE bot_config(
   appname TEXT PRIMARY KEY REFERENCES app_config(appname) ON DELETE CASCADE,
-  sponsor_prompt TEXT,
-  sponsor_message TEXT,
   default_skin TEXT
 );
 
@@ -81,10 +79,8 @@ CREATE TABLE user_config(
   userid BIGINT PRIMARY KEY,
   timezone TEXT,
   name TEXT,
-  topgg_vote_reminder BOOLEAN,
   avatar_hash TEXT,
   API_timestamp BIGINT,
-  gems INTEGER DEFAULT 0,
   first_seen TIMESTAMPTZ DEFAULT now(),
   last_seen TIMESTAMPTZ,
   locale_hint TEXT,
@@ -1227,51 +1223,8 @@ create TABLE timers(
 CREATE INDEX timers_guilds ON timers (guildid);
 -- }}}
 
--- Topgg Data {{{
-create TABLE topgg(
-  voteid SERIAL PRIMARY KEY,
-  userid BIGINT NOT NULL,
-  boostedTimestamp TIMESTAMPTZ NOT NULL
-);
-CREATE INDEX topgg_userid_timestamp ON topgg (userid, boostedTimestamp);
 
-CREATE TABLE topgg_guild_whitelist(
-  appid TEXT,
-  guildid BIGINT,
-  PRIMARY KEY(appid, guildid)
-);
--- }}}
 
--- Sponsor Data {{{
-CREATE TABLE sponsor_guild_whitelist(
-  appid TEXT,
-  guildid BIGINT,
-  PRIMARY KEY(appid, guildid)
-);
--- }}}
-
--- LionGem audit log {{{
-CREATE TYPE GemTransactionType AS ENUM (
-  'ADMIN',
-  'GIFT',
-  'PURCHASE',
-  'AUTOMATIC'
-);
-
-CREATE TABLE gem_transactions(
-  transactionid SERIAL PRIMARY KEY,
-  transaction_type GemTransactionType NOT NULL,
-  actorid BIGINT NOT NULL,
-  from_account BIGINT,
-  to_account BIGINT,
-  amount INTEGER NOT NULL,
-  description TEXT NOT NULL,
-  note TEXT,
-  reference TEXT,
-  _timestamp TIMESTAMPTZ DEFAULT now()
-);
-CREATE INDEX gem_transactions_from ON gem_transactions (from_account);
--- }}}
 
 -- Skin Data {{{
 CREATE TABLE global_available_skins(
@@ -1319,7 +1272,7 @@ CREATE TABLE user_skin_inventory(
   itemid SERIAL PRIMARY KEY,
   userid BIGINT NOT NULL REFERENCES user_config (userid) ON DELETE CASCADE,
   custom_skin_id INTEGER NOT NULL REFERENCES customised_skins (custom_skin_id) ON DELETE CASCADE,
-  transactionid INTEGER REFERENCES gem_transactions (transactionid),
+  transactionid INTEGER,
   active BOOLEAN NOT NULL DEFAULT FALSE,
   acquired_at TIMESTAMPTZ DEFAULT now(),
   expires_at TIMESTAMPTZ
@@ -1335,24 +1288,6 @@ CREATE VIEW user_active_skins AS
 -- }}}
 
 
--- Premium Guild Data {{{
-CREATE TABLE premium_guilds(
-  guildid BIGINT PRIMARY KEY REFERENCES guild_config,
-  premium_since TIMESTAMPTZ NOT NULL DEFAULT now(),
-  premium_until TIMESTAMPTZ NOT NULL DEFAULT now(),
-  custom_skin_id INTEGER REFERENCES customised_skins
-);
-
--- Contributions members have made to guild premium funds
-CREATE TABLE premium_guild_contributions(
-  contributionid SERIAL PRIMARY KEY,
-  userid BIGINT NOT NULL REFERENCES user_config,
-  guildid BIGINT NOT NULL REFERENCES premium_guilds,
-  transactionid INTEGER REFERENCES gem_transactions,
-  duration INTEGER NOT NULL,
-  _timestamp TIMESTAMPTZ DEFAULT now()
-);
--- }}}
 
 
 -- Analytics Data {{{

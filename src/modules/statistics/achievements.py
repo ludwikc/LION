@@ -277,25 +277,6 @@ class VoiceStreak(Achievement):
 
         return max_streak if max_streak >= self.threshold else current_streak
 
-class Voting(Achievement):
-    _name = _p(
-        'achievement:voting|name',
-        "We're a Team"
-    )
-    _subtext = _p(
-        'achievement:voting|subtext',
-        "Vote 100 times on top.gg"
-    )
-
-    threshold = 100
-    emoji_index = 6
-
-    @log_wrap(action='Calc Voting')
-    async def _calculate(self):
-        record = await self.bot.core.data.topgg.select_one_where(
-            userid=self.userid
-        ).select(total='COUNT(*)')
-        return int(record['total'] or 0)
 
 
 class VoiceDays(Achievement):
@@ -436,7 +417,6 @@ achievements = [
     Workout,
     VoiceHours,
     VoiceStreak,
-    Voting,
     VoiceDays,
     TasksComplete,
     ScheduledSessions,

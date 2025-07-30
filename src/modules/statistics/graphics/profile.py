@@ -87,7 +87,7 @@ async def get_profile_card(bot: LionBot, userid: int, guildid: int):
     card = ProfileCard(
         user=username,
         avatar=(userid, avatar),
-        coins=lion.data.coins, gems=luser.data.gems, gifts=0,
+        coins=lion.data.coins, gems=0, gifts=0,  # gems removed with premium module
         profile_badges=profile_badges,
         achievements=achieved,
         current_rank=current_rank,
