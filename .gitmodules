@@ -1,6 +1,0 @@
-[submodule "bot/gui"]
-	path = src/gui
-	url = https://github.com/StudyLions/StudyLion-Plugin-GUI.git
-[submodule "skins"]
-	path = skins
-	url = https://github.com/StudyLions/StudyLion-Plugin-Skins.git
