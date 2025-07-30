@@ -1,5 +1,6 @@
 import time
 import logging
+import os
 
 from PIL import Image, ImageColor
 from ..utils import resolve_asset_path, get_font
@@ -62,10 +63,18 @@ class AssetField(Field):
 
     def load(self):
         if self.path:
-            image = Image.open(self.path)
-            if self.convert:
-                image = image.convert(self.convert)
-            self.value = image
+            try:
+                logger.debug(f"Loading asset: {self.path}")
+                if not os.path.exists(self.path):
+                    logger.error(f"Asset file not found: {self.path}")
+                    raise FileNotFoundError(f"Asset file not found: {self.path}")
+                image = Image.open(self.path)
+                if self.convert:
+                    image = image.convert(self.convert)
+                self.value = image
+            except Exception as e:
+                logger.error(f"Failed to load asset {self.path}: {e}")
+                raise
         else:
             self.value = None
         return self
@@ -130,6 +139,9 @@ class BlobField(Field):
         if self.asset is not None and not colour_override:
             self.value = self.asset.load().value
         else:
+            if mask is None:
+                logger.error(f"Mask field '{self.mask_field}' failed to load, cannot create blob")
+                raise ValueError(f"Mask field '{self.mask_field}' failed to load")
             colour = colour_override or colour
             image = Image.new('RGBA', (mask.width, mask.height))
             image.paste(ImageColor.getrgb(colour), mask=mask)
