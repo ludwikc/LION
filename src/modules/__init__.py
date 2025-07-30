@@ -24,6 +24,7 @@ active = [
     # '.premium',  # Temporarily disabled due to webhook config issue
     '.reactions',
     '.secrets',
+    '.venting',
     '.test',
 ]
 

@@ -114,19 +114,46 @@ class VentingCog(LionCog):
         This command allows users to vent their frustrations while ensuring
         complete privacy through immediate message disposal after validation.
         """
-        success, error_msg = await self._dispose_message_logic(ctx, message)
-        
-        if success:
+        try:
+            # Validate channel
+            if ctx.channel.id != self.TARGET_VENTING_CHANNEL:
+                await ctx.respond(
+                    embed=error_embed("Ta komenda działa tylko na wyznaczonym kanale do wygadywania się!"),
+                    ephemeral=True
+                )
+                return
+            
+            # Validate message content
+            is_valid, error_msg = self.validate_message_content(message)
+            if not is_valid:
+                await ctx.respond(
+                    embed=error_embed(error_msg),
+                    ephemeral=True
+                )
+                return
+            
+            # Message disposal: Simply discard after validation for therapeutic value
+            logger.info(
+                f"Venting message disposed in channel {ctx.channel.id} "
+                f"by user {ctx.author.id} (content not logged for privacy)"
+            )
+            
+            # Send comfort response
             comfort_response = self.get_comfort_response()
             await ctx.respond(
                 comfort_response,
                 ephemeral=True
             )
-        else:
-            await ctx.respond(
-                embed=error_embed(error_msg),
-                ephemeral=True
-            )
+            
+        except Exception as e:
+            logger.error(f"Error in vent command: {e}", exc_info=True)
+            try:
+                await ctx.respond(
+                    embed=error_embed("Wystąpił nieoczekiwany błąd. Spróbuj ponownie później."),
+                    ephemeral=True
+                )
+            except Exception as response_error:
+                logger.error(f"Failed to send error response: {response_error}", exc_info=True)
 
     @cmds.hybrid_command(
         name="precz",
@@ -139,18 +166,44 @@ class VentingCog(LionCog):
         Alias for the vent command.
         
         Alternative Polish-language alias for venting functionality.
-        Uses the same shared logic but handles its own response to avoid double-response issues.
         """
-        success, error_msg = await self._dispose_message_logic(ctx, message)
-        
-        if success:
+        try:
+            # Validate channel
+            if ctx.channel.id != self.TARGET_VENTING_CHANNEL:
+                await ctx.respond(
+                    embed=error_embed("Ta komenda działa tylko na wyznaczonym kanale do wygadywania się!"),
+                    ephemeral=True
+                )
+                return
+            
+            # Validate message content
+            is_valid, error_msg = self.validate_message_content(message)
+            if not is_valid:
+                await ctx.respond(
+                    embed=error_embed(error_msg),
+                    ephemeral=True
+                )
+                return
+            
+            # Message disposal: Simply discard after validation for therapeutic value
+            logger.info(
+                f"Venting message disposed in channel {ctx.channel.id} "
+                f"by user {ctx.author.id} (content not logged for privacy)"
+            )
+            
+            # Send comfort response
             comfort_response = self.get_comfort_response()
             await ctx.respond(
                 comfort_response,
                 ephemeral=True
             )
-        else:
-            await ctx.respond(
-                embed=error_embed(error_msg),
-                ephemeral=True
-            )
+            
+        except Exception as e:
+            logger.error(f"Error in precz command: {e}", exc_info=True)
+            try:
+                await ctx.respond(
+                    embed=error_embed("Wystąpił nieoczekiwany błąd. Spróbuj ponownie później."),
+                    ephemeral=True
+                )
+            except Exception as response_error:
+                logger.error(f"Failed to send error response: {response_error}", exc_info=True)

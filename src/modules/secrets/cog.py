@@ -107,18 +107,57 @@ class SecretsCog(LionCog):
         This command allows users to share secrets anonymously while maintaining
         complete privacy. The user's identity is never revealed or logged.
         """
-        success, error_msg = await self._share_secret_logic(ctx, message)
-        
-        if success:
+        try:
+            # Validate channel
+            if ctx.channel.id != self.TARGET_SECRETS_CHANNEL:
+                await ctx.respond(
+                    embed=error_embed("This command only works in the designated secrets channel!"),
+                    ephemeral=True
+                )
+                return
+            
+            # Validate message content
+            is_valid, error_msg = self.validate_message_content(message)
+            if not is_valid:
+                await ctx.respond(
+                    embed=error_embed(error_msg),
+                    ephemeral=True
+                )
+                return
+            
+            # Format and send the secret message
+            formatted_message = self.format_secret_message(message)
+            await ctx.channel.send(formatted_message)
+            
+            # Log successful secret sharing (without content for privacy)
+            logger.info(
+                f"Anonymous secret shared in channel {ctx.channel.id} "
+                f"by user {ctx.author.id} (content not logged for privacy)"
+            )
+            
             await ctx.respond(
                 "Your secret has been shared anonymously! 🤐",
                 ephemeral=True
             )
-        else:
-            await ctx.respond(
-                embed=error_embed(error_msg),
-                ephemeral=True
-            )
+            
+        except discord.HTTPException as e:
+            logger.error(f"Failed to send secret message: {e}")
+            try:
+                await ctx.respond(
+                    embed=error_embed("Failed to share your secret. Please try again later."),
+                    ephemeral=True
+                )
+            except Exception as response_error:
+                logger.error(f"Failed to send error response: {response_error}", exc_info=True)
+        except Exception as e:
+            logger.error(f"Error in secret command: {e}", exc_info=True)
+            try:
+                await ctx.respond(
+                    embed=error_embed("An unexpected error occurred. Please try again later."),
+                    ephemeral=True
+                )
+            except Exception as response_error:
+                logger.error(f"Failed to send error response: {response_error}", exc_info=True)
 
     @cmds.hybrid_command(
         name="sekret",
@@ -131,17 +170,55 @@ class SecretsCog(LionCog):
         Alias for the secret command.
         
         This is an alternative spelling/alias for the main secret sharing command.
-        Uses the same shared logic but handles its own response to avoid double-response issues.
         """
-        success, error_msg = await self._share_secret_logic(ctx, message)
-        
-        if success:
+        try:
+            # Validate channel
+            if ctx.channel.id != self.TARGET_SECRETS_CHANNEL:
+                await ctx.respond(
+                    embed=error_embed("This command only works in the designated secrets channel!"),
+                    ephemeral=True
+                )
+                return
+            
+            # Validate message content
+            is_valid, error_msg = self.validate_message_content(message)
+            if not is_valid:
+                await ctx.respond(
+                    embed=error_embed(error_msg),
+                    ephemeral=True
+                )
+                return
+            
+            # Format and send the secret message
+            formatted_message = self.format_secret_message(message)
+            await ctx.channel.send(formatted_message)
+            
+            # Log successful secret sharing (without content for privacy)
+            logger.info(
+                f"Anonymous secret shared in channel {ctx.channel.id} "
+                f"by user {ctx.author.id} (content not logged for privacy)"
+            )
+            
             await ctx.respond(
                 "Your secret has been shared anonymously! 🤐",
                 ephemeral=True
             )
-        else:
-            await ctx.respond(
-                embed=error_embed(error_msg),
-                ephemeral=True
-            )
+            
+        except discord.HTTPException as e:
+            logger.error(f"Failed to send secret message: {e}")
+            try:
+                await ctx.respond(
+                    embed=error_embed("Failed to share your secret. Please try again later."),
+                    ephemeral=True
+                )
+            except Exception as response_error:
+                logger.error(f"Failed to send error response: {response_error}", exc_info=True)
+        except Exception as e:
+            logger.error(f"Error in sekret command: {e}", exc_info=True)
+            try:
+                await ctx.respond(
+                    embed=error_embed("An unexpected error occurred. Please try again later."),
+                    ephemeral=True
+                )
+            except Exception as response_error:
+                logger.error(f"Failed to send error response: {response_error}", exc_info=True)
