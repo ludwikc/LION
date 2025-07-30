@@ -1,0 +1,25 @@
+2025-07-29 18:34:08,992|INFO    |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising          | data.connector: Opening database pool.
+2025-07-29 18:34:08,992|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Data Connect| data.connector: Database connection requested.
+2025-07-29 18:34:09,007|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Conn Init| data.connector: Initialising new connection.
+2025-07-29 18:34:09,034|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Query Execute| data.cursor: Executing query (SELECT * FROM VersionHisto
+ry ORDER BY time DESC LIMIT 1) with values None
+2025-07-29 18:34:09,035|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Conn Init| data.connector: Initialising new connection.
+2025-07-29 18:34:09,036|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Conn Init| data.connector: Initialising new connection.
+2025-07-29 18:34:09,039|INFO    |LION_01_00     |APP: LION               |Initia
+lising ” Starting| bot: StudyLion initialised, starting!
+2025-07-29 18:34:09,039|INFO    |LION_01_00     |APP: LION               |Initia
+lising ” Login  | discord.client: logging in using static token
+2025-07-29 18:34:09,065|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Conn Init| data.connector: Initialising new connection.
+2025-07-29 18:34:09,067|DEBUG   |LION_01_00     |CTX: ROOT CONTEXT       |Initia
+lising ” Conn Init| data.connector: Initialising new connection.
+2025-07-29 18:34:09,587|INFO    |LION_01_00     |APP: 1399779479492235348|ShardT
+alk             | meta.ipc.client: Serving on {'host': '127.0.0.1', 'port': '445
+82'}
+

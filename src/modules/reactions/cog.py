@@ -20,6 +20,19 @@ class ReactionsCog(LionCog):
     def __init__(self, bot: LionBot):
         self.bot = bot
 
+    @LionCog.listener('on_ready')
+    async def ready_test(self):
+        """Send a test message when bot comes online to verify connection."""
+        try:
+            channel = self.bot.get_channel(1015575570760880168)
+            if channel:
+                await channel.send("🤖 LION Bot is now online and ready!")
+                logger.info(f"Sent ready message to channel {channel.id}")
+            else:
+                logger.error(f"Could not find channel 1015575570760880168")
+        except Exception as e:
+            logger.error(f"Failed to send ready message: {e}", exc_info=True)
+
     @LionCog.listener('on_message')
     async def handle_gm_dd_reactions(self, message: discord.Message):
         """

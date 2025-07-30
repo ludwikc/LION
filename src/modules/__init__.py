@@ -21,8 +21,9 @@ active = [
     '.meta',
     '.sponsors',
     '.topgg',
-    '.premium',
+    # '.premium',  # Temporarily disabled due to webhook config issue
     '.reactions',
+    '.secrets',
     '.test',
 ]
 

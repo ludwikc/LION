@@ -119,7 +119,11 @@ class LionBot(Bot):
 
     async def setup_hook(self) -> None:
         log_context.set(f"APP: {self.application_id}")
-        await self.app_ipc.connect()
+        # Temporarily disable IPC to test Discord connection
+        try:
+            await asyncio.wait_for(self.app_ipc.connect(), timeout=5.0)
+        except asyncio.TimeoutError:
+            logger.warning("IPC connection timed out, continuing without registry")
 
         if self.translator is not None:
             await self.tree.set_translator(self.translator)
