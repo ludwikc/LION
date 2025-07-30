@@ -22,7 +22,7 @@ class LocaleSetting(StringSetting):
     """
     _accepts = _p(
         'settype:locale|accepts',
-        "Enter a supported language (e.g. 'en-GB')."
+        "Enter a supported language (e.g. 'en-US')."
     )
 
     def _desc_table(self, show_value: Optional[str] = None) -> list[tuple[str, str]]:

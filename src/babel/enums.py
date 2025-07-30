@@ -72,5 +72,4 @@ locale_names = {
 
 # More names for languages not supported by Discord
 locale_names |= {
-    'ceaser': (_p('localenames|locale:test', "Test Language"), "dfbtfs"),
 }
