@@ -26,7 +26,6 @@ class LocaleMap(Enum):
     lithuanian = 'lt'
     norwegian = 'no'
     polish = 'pl'
-    brazil_portuguese = 'pt-BR'
     romanian = 'ro'
     russian = 'ru'
     spain_spanish = 'es-ES'
@@ -35,7 +34,6 @@ class LocaleMap(Enum):
     turkish = 'tr'
     ukrainian = 'uk'
     vietnamese = 'vi'
-    hebrew = 'he-IL'
 
 
 # Original Discord names
@@ -54,7 +52,6 @@ locale_names = {
     'nl': (_p('localenames|locale:nl', "Dutch"), "Nederlands"),
     'no': (_p('localenames|locale:no', "Norwegian"), "Norsk"),
     'pl': (_p('localenames|locale:pl', "Polish"), "Polski"),
-    'pt-BR': (_p('localenames|locale:pt-BR', "Portuguese, Brazilian"), "Português do Brasil"),
     'ro': (_p('localenames|locale:ro', "Romanian, Romania"), "Română"),
     'fi': (_p('localenames|locale:fi', "Finnish"), "Suomi"),
     'sv-SE': (_p('localenames|locale:sv-SE', "Swedish"), "Svenska"),
@@ -75,7 +72,5 @@ locale_names = {
 
 # More names for languages not supported by Discord
 locale_names |= {
-    'he': (_p('localenames|locale:he', "Hebrew"), "Hebrew"),
-    'he-IL': (_p('localenames|locale:he-IL', "Hebrew"), "Hebrew"),
     'ceaser': (_p('localenames|locale:test', "Test Language"), "dfbtfs"),
 }

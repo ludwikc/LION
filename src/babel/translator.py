@@ -22,7 +22,7 @@ null = gettext.NullTranslations()
 
 class LeoBabel(Translator):
     def __init__(self):
-        self.supported_locales = {loc.name for loc in Locale}
+        self.supported_locales = set()  # Will be loaded from config
         self.supported_domains = {}
         self.translators = defaultdict(dict)  # locale -> domain -> GNUTranslator
 
