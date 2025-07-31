@@ -30,9 +30,18 @@ class LionTree(CommandTree):
                 raise error.original
             else:
                 raise error
-        except SafeCancellation:
-            # Assume this has already been handled
-            pass
+        except SafeCancellation as e:
+            # Handle SafeCancellation with user message (like UserInputError)
+            if e.msg:
+                error_embed = discord.Embed(
+                    title="Error",
+                    description=e.msg,
+                    color=discord.Color.red()
+                )
+                await self.error_reply(interaction, error_embed)
+            else:
+                # No message provided, assume handled elsewhere
+                pass
         except RenderingException as e:
             logger.info(f"Tree interaction failed due to rendering exception: {repr(e)}")
             embed = self.rendersplat(e)

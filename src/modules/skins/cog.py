@@ -277,6 +277,8 @@ class CustomSkinCog(LionCog):
             return
         if not ctx.guild:
             return
+        
+        await ctx.interaction.response.defer(ephemeral=True)
         t = self.bot.translator.t
 
         # Premium module removed - guild branding disabled
