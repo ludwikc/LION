@@ -136,11 +136,11 @@ class BulkEditor(LeoModal):
         return coro
 
     async def on_submit(self, interaction: discord.Interaction):
+        await interaction.response.defer(thinking=True)
         try:
             await self.parse_editor()
             for coro in self._callbacks:
                 await coro(interaction)
-            await interaction.response.defer()
         except UserInputError as error:
             await ModalRetryUI(self, error.msg).respond_to(interaction)
 

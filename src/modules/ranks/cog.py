@@ -899,6 +899,8 @@ class RankCog(LionCog):
             return
         if not ctx.interaction:
             return
+        
+        await ctx.interaction.response.defer(thinking=True)
         ui = RankOverviewUI(self.bot, ctx.guild, ctx.author.id)
         if await high_management_iward(ctx.interaction):
             await ui.run(ctx.interaction)
@@ -906,7 +908,7 @@ class RankCog(LionCog):
         else:
             await ui.reload()
             msg = await ui.make_message(show_note=False)
-            await ctx.reply(
+            await ctx.interaction.edit_original_response(
                 **msg.send_args,
                 ephemeral=True
             )

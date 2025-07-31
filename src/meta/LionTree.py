@@ -1,4 +1,5 @@
 import logging
+import asyncio
 
 import discord
 from discord import Interaction
@@ -153,11 +154,42 @@ class LionTree(CommandTree):
 
         set_logging_context(action=f"Run {command.qualified_name}")
         logger.debug(f"Running command '{command.qualified_name}': {command.to_dict(self)}")
+        
+        # Timeout safety net: ensure response within 3 seconds
         try:
-            await command._invoke_with_namespace(interaction, namespace)
+            await asyncio.wait_for(
+                command._invoke_with_namespace(interaction, namespace),
+                timeout=2.5  # Leave 0.5s buffer for processing
+            )
+        except asyncio.TimeoutError:
+            logger.warning(f"Command '{command.qualified_name}' timed out, auto-deferring")
+            try:
+                if not interaction.response.is_done():
+                    await interaction.response.defer(thinking=True)
+                    # Try the command again with deferred interaction
+                    await command._invoke_with_namespace(interaction, namespace)
+                else:
+                    logger.error(f"Command '{command.qualified_name}' timed out after response was already sent")
+                    interaction.command_failed = True
+            except Exception as defer_error:
+                logger.error(f"Failed to auto-defer timed out command: {defer_error}")
+                interaction.command_failed = True
+                await self.on_error(interaction, defer_error)
         except AppCommandError as e:
             interaction.command_failed = True
             await command._invoke_error_handlers(interaction, e)
+            await self.on_error(interaction, e)
+        except Exception as e:
+            # Ensure we always respond within timeout window
+            if not interaction.response.is_done() and not interaction.is_expired():
+                try:
+                    await interaction.response.send_message(
+                        "An unexpected error occurred. Please try again.",
+                        ephemeral=True
+                    )
+                except Exception:
+                    pass  # Already logged in on_error
+            interaction.command_failed = True
             await self.on_error(interaction, e)
         else:
             if not interaction.command_failed:

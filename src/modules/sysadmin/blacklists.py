@@ -546,6 +546,7 @@ class BlacklistUI(LeoUI):
 
         @modal.submit_callback()
         async def add_users_submit(interaction):
+            await interaction.response.defer(thinking=True)
             await self.parse_add_users(interaction, modal.targets.value, modal.reason.value)
 
         await interaction.response.send_modal(modal)
@@ -610,6 +611,7 @@ class BlacklistUI(LeoUI):
 
         @modal.submit_callback()
         async def add_guilds_submit(interaction):
+            await interaction.response.defer(thinking=True)
             await self.parse_add_guilds(interaction, modal.targets.value, modal.reason.value)
 
         await interaction.response.send_modal(modal)

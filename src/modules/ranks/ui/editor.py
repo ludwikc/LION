@@ -272,6 +272,7 @@ class RankEditor(FastModal):
 
         @self.submit_callback(timeout=15*60)
         async def _edit_rank_callback(interaction):
+            await interaction.response.defer(thinking=True)
             # Parse each field in turn
             # A parse error will raise UserInputError and trigger ModalRetry
             role_name = self.role_name_parse()
@@ -323,6 +324,7 @@ class RankEditor(FastModal):
 
         @self.submit_callback(timeout=15*60)
         async def _create_rank_callback(interaction):
+            await interaction.response.defer(thinking=True)
             # Parse each field in turn
             # A parse error will raise UserInputError and trigger ModalRetry
             role_name = self.role_name_parse()

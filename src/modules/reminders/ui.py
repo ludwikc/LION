@@ -147,6 +147,7 @@ class ReminderList(MessageUI):
 
         @modal.submit_callback()
         async def create_reminder(interaction: discord.Interaction):
+            await interaction.response.defer(thinking=True)
             remind_at = await self.cog.parse_time_static(time_field.value, timezone)
             if intervalstr := interval_field.value:
                 interval = parse_duration(intervalstr)
