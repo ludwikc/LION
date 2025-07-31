@@ -9,7 +9,7 @@ import discord
 from discord.ext import commands as cmds
 
 from meta.errors import UserInputError
-from meta.context import LionContext
+from meta.LionContext import LionContext
 from .interaction import safe_defer
 
 logger = logging.getLogger(__name__)
