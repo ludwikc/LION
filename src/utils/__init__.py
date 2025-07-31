@@ -11,6 +11,15 @@ from .interaction import (
     timeout_handler
 )
 
+# Import disabled feature utilities
+from .disabled_features import (
+    feature_disabled_response,
+    premium_disabled_decorator,
+    validation_with_defer,
+    send_feature_disabled_embed,
+    DISABLED_FEATURE_MESSAGES
+)
+
 
 async def setup(bot):
     from .cog import MetaUtils

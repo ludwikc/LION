@@ -563,6 +563,8 @@ class RoleMenuCog(LionCog):
             return
         if not ctx.interaction:
             return
+        
+        await ctx.interaction.response.defer(thinking=True, ephemeral=True)
         t = self.bot.translator.t
 
         # Ward for manage_roles
@@ -580,8 +582,6 @@ class RoleMenuCog(LionCog):
                     "I lack the `MANAGE_ROLES` permission required to offer roles from role menus."
                 ))
             )
-
-        await ctx.interaction.response.defer(thinking=True, ephemeral=True)
         menusui = MenuList(self.bot, ctx.guild, callerid=ctx.author.id)
         await menusui.run(ctx.interaction)
         await menusui.wait()

@@ -487,6 +487,7 @@ class TasklistCog(LionCog):
         if not ctx.interaction:
             return
 
+        await ctx.interaction.response.defer(thinking=True, ephemeral=True)
         error = None
 
         if tasklist_file.content_type and not tasklist_file.content_type.startswith('text'):
@@ -504,8 +505,6 @@ class TasklistCog(LionCog):
                 "The attached tasklist was too large!"
             ))
             raise UserInputError(error)
-
-        await ctx.interaction.response.defer(thinking=True, ephemeral=True)
         try:
             content = (await tasklist_file.read()).decode(encoding='UTF-8')
             lines = content.splitlines()

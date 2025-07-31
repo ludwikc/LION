@@ -124,6 +124,8 @@ class BabelCog(LionCog):
         if not ctx.guild:
             # This is impossible by decorators, but adding this guard for the type checker
             return
+        
+        await ctx.interaction.response.defer()
         t = self.t
         # TODO: Setting group, and group setting widget
         # We can attach the command to the setting group as an application command

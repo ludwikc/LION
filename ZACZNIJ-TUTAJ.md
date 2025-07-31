@@ -1,4 +1,4 @@
-# Witaj w Społeczności Lifehackerzy! 🎯
+# Witaj wśród Lifehackerów! ☸️
 
 ```diff
 + Wdech +
@@ -24,73 +24,99 @@ I zawsze z Miłością (nawet jeśli jeszcze nie wiesz co to dla Ciebie znaczy).
 - [ ] **Dołącz do codziennego spotkania o 12:34** - chciałbym Cię osobiście powitać w naszej Społeczności
 - [ ] **Daj sobie czas** - nie wszystko od razu, ale systematycznie
 
-### 📍 Gdzie Jestem?
+## 🌐 Ekosystem Lifehackerzy
 
 Znajdziesz się w ekosystemie składającym się z kilku platform:
 
-- **GitBook** (tutaj jesteś) - Kompendium wiedzy, przewodniki, materiały
-- **Discord** - Codzienne rozmowy, spotkania na żywo, społeczność
-- **Platforma Kursowa** - Twoje programy, lekcje, postępy
+- **Discord** (główna społeczność) - Codzienne rozmowy, spotkania na żywo, wsparcie grupy
+- **GitBook** (tutaj jesteś) - Kompendium wiedzy, przewodniki, materiały edukacyjne
+- **Platforma Kursowa** - Twoje programy, lekcje, system śledzenia postępów
 - **Newsletter** - Regularne dawki inspiracji i praktycznych wskazówek
 
 ---
 
-## 🏛️ Struktura Społeczności
+## 🏗️ Mapa Kanałów Discord
 
-### 💬 Codzienne Życie
-- **Rozmowy Lifehackerów** - Codzienne życie, luźne rozmowy, szybkie pytania. Tu poznasz prawdziwe twarze za nickami
-- **Forum Lifehackerów** - Głębokie dyskusje o produktywności, mindfulness, energii, narzędziach i współpracy
-- **Poczekalnia** - Miejsce dla tych, którzy jeszcze do nas nie dołączyli, ale pewnie wkrótce to zrobią
+### 📚 Na Dzień Dobry
+- [📕│zacznij-tutaj](https://discord.com/channels/428530875085619200/938772266710343690) - Tutaj zaczynasz swoją przygodę z Lifehackerami. Przewodnik, zasady, pierwsze kroki
+- [👋│nowi-lifehackerzy](https://discord.com/channels/428530875085619200/1122615977327198479) - Przedstaw się nam! Kim jesteś? Co Cię tu sprowadza / w którym programie uczestniczysz? W czym możemy Cię wesprzeć?
 
-### 🎯 Spotkania i Aktywności
-- **12:34 Daily Coaching** - Codzienne spotkanie o 12:34. Serce Lifehackerów - wpadnij i działamy!
-- **Silent Cowork** - Wpadnij, odpal video i pracuj z nami. 0 rozmów, 100% skupienia
-- **Warsztaty** - Większe spotkania i wtorkowe medytacje
-- **Ogłoszenia** - Ważne informacje. Nowe programy, wydarzenia, zmiany w Społeczności
+### 💬 Główne Kanały
+- [💬│rozmowy-lifehackerów](https://discord.com/channels/428530875085619200/1128649406640558110) - Codzienne życie, luźne rozmowy, szybkie pytania. Tu poznasz prawdziwe twarze za nickami
+- [🤩│forum-lifehackerów](https://discord.com/channels/428530875085619200/1124379257586593957) - Głębokie dyskusje z tagami: #produktywność #mindfulness #energia #narzędzia #współpraca
+- [🇵🇱│poczekalnia](https://discord.com/channels/428530875085619200/995407411961659402) - Miejsce dla tych, którzy jeszcze do nas nie dołączyli, ale pewnie wkrótce to zrobią, więc traktujmy ich jak swoich ❤️
+- **❓│jak-dołączyć-do-lifehackerów** - Tutaj instrukcja dla przyszłych Lifehackerów (nie zobaczysz tego kanału, jeśli już jesteś z nami)
 
-### 📈 Twój Rozwój
-- **Dzień Dobry** - Codzienne przywitania i sprawdzanie samopoczucia
-- **Progress Tracker** - Twoje małe i wielkie wygrane. Medytacje, treningi, ukończone lekcje, osobiste sukcesy
-- **Podbij Zasięg** - Dziel się swoimi postami w social mediach dla wzajemnego wsparcia
+### 🎯 Spotkania i Komunikacja
+- [🔢│1234-daily-coaching](https://discord.com/channels/428530875085619200/1120658406160732160) - Codzienne spotkanie o 12:34. Serce Lifehackerów - wpadnij i działamy!
+- [🤫│silent cowork](https://discord.com/channels/428530875085619200/1023996094524424313) - Wpadnij, odpal video i pracuj z nami. 0 rozmów, 100% skupienia
+- [🎭│warsztaty](https://discord.com/channels/428530875085619200/988452597549641758) - Tutaj prowadzimy większe spotkania i wtorkowe medytacje
+- [📢│ogłoszenia](https://discord.com/channels/428530875085619200/1109387331959525376) - Ważne informacje od @Ludwik C. Siadlak. Nowe programy, wydarzenia, zmiany w Społeczności
+
+### 📈 Aktywności i Postępy
+- [🌅│dzień-dobry](https://discord.com/channels/428530875085619200/1021389566445375558) - Przywitaj się, a może zobaczysz kto jeszcze już nie śpi
+- [📈│progress-tracker](https://discord.com/channels/428530875085619200/1225131519404675124) - Twoje małe i wielkie wygrane. Medytacje, treningi, ukończone lekcje, osobiste sukcesy
+- [💉│podbij-zasięg](https://discord.com/channels/428530875085619200/1031650681779658813) - Dziel się swoimi postami w social mediach dla wzajemnego podbijania zasięgów
 
 ### 🆘 Wsparcie
-- **Pomoc Techniczna** - Problemy z dostępem, platformą, błędy techniczne? Tu znajdziesz rozwiązanie
-- **Jeszcze Lepiej** - Sugestie co rozwinąć/zmienić/poprawić, aby było nam tutaj lepiej
-- **Sekrety Hackerów** - Anonimowe wpisy o tym, w czym potrzebujesz wsparcia
-- **Venting Zone** - Wyrzuć to z siebie. Miejsce na chwilowe odciążenie
+- [🆘│pomoc-techniczna](https://discord.com/channels/428530875085619200/1007740509252493433) - Problemy z dostępem, platformą, błędy techniczne? Napisz tutaj, rozwiążemy!
+- [😍│jeszcze-lepiej](https://discord.com/channels/428530875085619200/1124264446173392896) - Sugestie co rozwinąć / zmienić / poprawić / zmodyfikować, aby było nam tutaj lepiej
 
-### 💎 Przestrzenie Specjalne
-- **Męskie Forum** - Zamknięta przestrzeń wyłącznie dla kohort Męskiego Kompasu
-- **Tylko dla Patronów** - Dodatkowe materiały dla Patronów Fundacji
-- **Founding Members (NFT)** - Przestrzeń dla Naszego Fenomenalnego Towarzystwa z dostępem do wszystkich produktów
+### 🎲 Kanały Specjalne
+- [🤫│sekrety-hackerów](https://discord.com/channels/428530875085619200/1196136652737892463) - Anonimowe wpisy o tym, w czym potrzebujesz wsparcia. Społeczność poda pomocną dłoń
+- [😡│venting-zone](https://discord.com/channels/428530875085619200/1231496272381218977) - Wyrzuć to z siebie. Każda wiadomość jest natychmiast usuwana - miejsce na chwilowe odciążenie
+- [🎙│tylko-głosówki](https://discord.com/channels/428530875085619200/1353499739987120218) - Kanał w fazie testów - tylko wiadomości głosowe, pisanie wyłączone. Eksperymentujemy z komunikacją
+
+### 💎 Kanały Zamknięte
+- **🚹│męskie-forum** - Zamknięta przestrzeń wyłącznie dla kohort Męskiego Kompasu
+- **💎│tylko-dla-patronów** - Zamknięta przestrzeń i dodatkowe materiały tylko dla @Patroni Fundacji
+- **🏆│founding-members** - Przestrzeń dla Naszego Fenomenalnego Towarzystwa (@NFT 🏆) z dostępem do wszystkich produktów - bieżących i przyszłych
 
 ---
 
 ## 📜 Nasze Zasady
 
 ### ✅ Podstawowe Reguły
-- **Każde pytanie wynika z ciekawości** - Pytaj, dowiaduj się i rozwijaj, bo pytając prowokujesz innych do pochylenia się nad Twoim tematem
-- **Każdy ma swoją rzeczywistość** - To co dla jednych jest sufitem, dla innych jest podłogą. Szczególnie jeśli jedno mieszka w Portugalii 🇵🇹 a drugie w Australii 🇦🇺
-- **Efekt > Intencja** - Zrobiłem > Chciałem. Mniej znaczy więcej i spiesz się powoli
-- **Żadnych treści NSFW i wprost wulgarnych** - Use your judgement. Szybko wyczujesz klimat jaki tu stworzyliśmy
-- **Należysz do Lifehackerów, bo jesteś moim Klientem** - A zatem obowiązują Cię regulaminy, które na pewno przeczytałeś 😉
 
-### 🏆 Nasze Wartości
+✅ **Każde pytanie wynika z ciekawości**  
+→ Pytaj, dowiaduj się i rozwijaj, bo pytając prowokujesz innych do pochylenia się nad Twoim tematem
 
-#### 💎 **Autentyczność**
-Bądź sobą, dziel się prawdziwymi doświadczeniami. Tu nie ma miejsca na udawanie czy perfekcyjne fasady.
+✅ **Każdy ma swoją rzeczywistość**  
+→ To co dla jednych jest sufitem, dla innych jest podłogą. Szczególnie jeśli jedno mieszka w Portugalii 🇵🇹 a drugie w Australii 🇦🇺
 
-#### 🤝 **Wsparcie**
-Pomagamy sobie nawzajem rosnąć. Każdy sukces jednego z nas to sukces całej społeczności.
+✅ **Efekt > Intencja**  
+→ Zrobiłem > Chciałem. Mniej znaczy więcej i spiesz się powoli
 
-#### 🔍 **Ciekawość**
-Zadawaj pytania, eksperymentuj, ucz się. Nie ma głupich pytań - są tylko nieodkryte odpowiedzi.
+✅ **Żadnych treści NSFW i wprost wulgarnych**  
+→ Use your judgement. Szybko wyczujesz klimat jaki tu stworzyliśmy i zobaczysz jak świetnie się to sprawdza
 
-#### 🎭 **Klasa**
-Kultura i elegancja, ale bez nadęcia. Możemy być poważni, zachowując ludzki wymiar.
+✅ **Należysz do Lifehackerów, bo jesteś moim Klientem**  
+→ To oznacza, że już zaakceptowałeś [regulamin sprzedaży](https://docs.siadlak.com/legal/regsprz) (*który na pewno przeczytałeś*)  
+→ A rejestrując się zaakceptowałeś również [regulamin newslettera](https://docs.siadlak.com/legal/regnews) (*który na pewno przeczytałeś*)  
+→ Pamiętaj zatem o obowiązywaniu [regulaminu społeczności](https://docs.siadlak.com/legal/regspo) (*który na pewno przeczytałeś*)  
+→ [Linki do wszystkich regulaminów](https://docs.siadlak.com/legal/regulaminy) i [polityki prywatności](https://docs.siadlak.com/legal/privacy) są w historii Twojej przeglądarki, bo... *przecież na pewno je wszystkie przeczytałeś* 😉
 
-#### ⚡ **Skuteczność**
-Od teorii do praktyki, od planów do rezultatów. Liczy się to, co zrobisz, nie to, co zamierzasz.
+✅ **A tak poważnie** - @LIFEHACKERZY to projekt mojego życia. A Ty, od dziś jesteś jego częścią.  
+**Dziękuję Ci, że jesteś.**
+
+---
+
+## 🏆 Nasze Wartości
+
+### 💎 **Autentyczność**
+→ Bądź sobą, dziel się prawdziwymi doświadczeniami
+
+### 🤝 **Wsparcie**  
+→ Pomagamy sobie nawzajem rosnąć
+
+### 🔍 **Ciekawość**  
+→ Zadawaj pytania, eksperymentuj, ucz się
+
+### 🎭 **Klasa**  
+→ Kultura i elegancja, ale bez nadęcia
+
+### ⚡ **Skuteczność**  
+→ Od teorii do praktyki, od planów do rezultatów
 
 ---
 
